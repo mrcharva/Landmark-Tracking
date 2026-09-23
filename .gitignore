@@ -1,0 +1,10 @@
+# Raw recordings and pressure logs come from the Zenodo data deposit
+share/
+# Everything the pipeline writes except the reference summary
+results/
+analysis_notes/*
+!analysis_notes/reanalysis_summary.md
+__pycache__/
+.pytest_cache/
+.venv/
+.DS_Store
