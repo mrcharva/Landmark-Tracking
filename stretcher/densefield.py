@@ -65,6 +65,29 @@ def select_grid(ref_img, center, radius, spacing=22, patch=21, min_std=None):
     return np.array([(x, y) for x, y, s in cands if s >= min_std])
 
 
+FIXED_MIN_STD = 12.0  # grayscale SD a patch needs to count as textured
+MIN_POINTS = 6  # fewest grid points that still triangulate usefully
+
+
+def select_textured_grid(ref_img, center, radius, spacing=24, patch=27):
+    """Grid points for the dense field, and which texture threshold chose them.
+
+    The fixed threshold is applied first. A low-contrast recording (faded
+    landmarks) that leaves fewer than MIN_POINTS patches falls back to the
+    adaptive threshold of select_grid, so it still yields its best-textured
+    patches instead of no field at all. This is the rule the reported dense
+    fields were produced with: 14 recordings used the fixed threshold and 8
+    needed the fallback.
+
+    Returns (points, "fixed" | "adaptive").
+    """
+    pts = select_grid(ref_img, center, radius, spacing=spacing, patch=patch,
+                      min_std=FIXED_MIN_STD)
+    if len(pts) >= MIN_POINTS:
+        return pts, "fixed"
+    return select_grid(ref_img, center, radius, spacing=spacing, patch=patch), "adaptive"
+
+
 def _subpixel(res, loc):
     """Parabolic sub-pixel refinement of a correlation peak."""
     x, y = loc

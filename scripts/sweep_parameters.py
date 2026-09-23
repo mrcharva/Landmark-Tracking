@@ -24,7 +24,7 @@ import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from stretcher import load_registry
-from stretcher.densefield import reference_image, select_grid, track_field
+from stretcher.densefield import reference_image, select_textured_grid, track_field
 from stretcher.detect import detect_video, video_fps
 from stretcher.resample import to_common_grid
 from stretcher.strain import triangle_strain
@@ -144,8 +144,8 @@ def sweep_dense(runs, patch=27, spacing=24):
         ref = reference_image(run["video"], run["crop"], run.get("rotate"),
                               ref_frames=range(60))
         c = run["inner_circle_cropped"]
-        pts = select_grid(ref, (c["cx"], c["cy"]), c["r"] * 0.85,
-                          spacing=spacing, patch=patch)
+        pts, _ = select_textured_grid(ref, (c["cx"], c["cy"]), c["r"] * 0.85,
+                                      spacing=spacing, patch=patch)
         if len(pts) < 6:
             continue
         traj, _ = track_field(run["video"], pts, ref, run["crop"],

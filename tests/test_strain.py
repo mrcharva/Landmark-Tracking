@@ -83,3 +83,18 @@ def test_radial_strain_pure_dilation():
     df = radial_strain(traj, center=center, frames=[1])
     assert np.allclose(df["radial_strain"], e, atol=1e-9)
     assert np.allclose(df["dtheta_deg"], 0, atol=1e-4)  # arccos precision floor
+
+
+def test_dense_grid_uses_fixed_threshold_and_falls_back_on_low_contrast():
+    """The reported dense fields used a fixed texture threshold, with the adaptive
+    one only for recordings too faded to give MIN_POINTS textured patches."""
+    from stretcher.densefield import MIN_POINTS, select_textured_grid
+
+    rng = np.random.default_rng(0)
+    speckled = rng.normal(128, 40, (300, 300)).clip(0, 255)
+    pts, how = select_textured_grid(speckled, (150, 150), 120)
+    assert how == "fixed" and len(pts) >= MIN_POINTS
+
+    faded = rng.normal(128, 6, (300, 300)).clip(0, 255)  # patch SD well below 12
+    pts, how = select_textured_grid(faded, (150, 150), 120)
+    assert how == "adaptive" and len(pts) >= MIN_POINTS

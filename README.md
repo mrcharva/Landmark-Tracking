@@ -28,16 +28,24 @@ python -m venv .venv
 
 ## Data
 
-The recordings and pressure logs are in the Zenodo data deposit that
-accompanies the manuscript (DOI to be added on publication of the deposit).
-Place them under `share/`, keeping the file names listed in
-`experiments.yaml`:
+The recordings and pressure logs are deposited on Zenodo at
+[10.5281/zenodo.14856233](https://doi.org/10.5281/zenodo.14856233). They are
+not stored in this repository. Fetch them with:
 
 ```
-share/Static/20241003_<well>_<mbar>_cont_HD.mp4
-share/Static/20241003_<well>_<mbar>_cont.csv
-share/Cyclic/...
+.venv/bin/python scripts/fetch_data.py
 ```
+
+This resolves the DOI, downloads the 48 files, checks each one against the MD5
+Zenodo publishes for it, and places it where `experiments.yaml` expects it,
+under `share/`. Files already present and intact are skipped, so it is safe to
+re-run. For a deposit that is not public yet, put an access token in the
+`ZENODO_TOKEN` environment variable.
+
+The deposit names files by regime, well and pressure
+(`static_2_50 mbar.mp4`); the registry names them by recording date
+(`share/Static/20241003_2_50_cont_HD.mp4`). The mapping is derived from each
+recording's regime, well and pressure, not hard-coded.
 
 `experiments.yaml` is the single source of truth for every recording: crop,
 threshold and blob filters, rotation (several videos are stored landscape),
@@ -47,6 +55,7 @@ with its reason. No per-recording value is hard-coded anywhere else.
 ## Running
 
 ```
+.venv/bin/python scripts/fetch_data.py          # recordings -> share/
 .venv/bin/python scripts/run_tracking.py        # landmarks -> results/tracking/
 .venv/bin/python scripts/run_densefield.py      # dense field -> results/tracking/
 .venv/bin/python scripts/analyze_results.py     # summary -> analysis_notes/
@@ -62,8 +71,9 @@ Each script writes a QC record next to its outputs.
 .venv/bin/python -m pytest tests/
 ```
 
-The tests check strain, synchronization, resampling and fitting against
-synthetic cases with known answers.
+The tests check strain, synchronization, resampling, fitting, dense-grid
+selection and the Zenodo mapping against synthetic cases with known answers.
+None of them needs the network or the data.
 
 `analysis_notes/reanalysis_summary.md` is committed as the reference output.
 After running the pipeline on the deposited data, `git diff analysis_notes/`
@@ -83,6 +93,7 @@ should show no change.
 | `densefield` | dense correlation-patch displacement field |
 | `stats` | aggregation from triangles to membrane to condition |
 | `results` | loaders for the tracked outputs |
+| `data` | Zenodo download with checksum verification |
 | `plotting` | shared figure style |
 
 Statistics are aggregated triangle to membrane to condition. Values from

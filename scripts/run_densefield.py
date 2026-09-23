@@ -20,7 +20,8 @@ import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from stretcher import load_registry
-from stretcher.densefield import reference_image, select_grid, track_field
+from stretcher.densefield import (MIN_POINTS, reference_image, select_textured_grid,
+                                  track_field)
 from stretcher.detect import video_fps
 from stretcher.ring import find_inner_circle
 from stretcher.results import MIN_ANGLE_DEG
@@ -57,16 +58,16 @@ def process(run):
     ref = reference_image(run["video"], run["crop"], run.get("rotate"),
                           ref_frames=REF_FRAMES)
     cx, cy, r, method = membrane_circle(run, ref)
-    pts = select_grid(ref, (cx, cy), r * 0.85,
-                      spacing=24, patch=PATCH)  # adaptive texture threshold
-    if len(pts) < 6:
+    pts, threshold = select_textured_grid(ref, (cx, cy), r * 0.85,
+                                          spacing=24, patch=PATCH)
+    if len(pts) < MIN_POINTS:
         raise ValueError(f"only {len(pts)} textured grid points")
     traj, qc = track_field(run["video"], pts, ref, run["crop"],
                            run.get("rotate"), patch=PATCH)
     good = traj.groupby("particle")["corr"].median()
     keep = good[good >= 0.7].index
     traj = traj[traj["particle"].isin(keep)]
-    if len(keep) < 6:
+    if len(keep) < MIN_POINTS:
         raise ValueError(f"only {len(keep)} well-correlated points")
 
     tri, simplices = triangle_strain(traj, ref_frames=REF_FRAMES)
@@ -83,6 +84,7 @@ def process(run):
         "name": name, "regime": run["regime"], "well": run["well"],
         "pressure_mbar": run["pressure_mbar"],
         "circle_method": method, "radius_px": round(float(r), 1),
+        "texture_threshold": threshold,
         "n_grid_points": int(len(pts)), "n_points_kept": int(len(keep)),
         "n_triangles": int(tri["triangle"].nunique()),
         "median_corr": round(qc["median_corr"], 4),
