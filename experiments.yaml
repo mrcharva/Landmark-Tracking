@@ -1,0 +1,658 @@
+ring_diameter_mm: 16.0
+protocols:
+  static:
+    duration_s: 30
+    description: continuous vacuum hold
+  cyclic:
+    duration_s: 60
+    period_s: 30
+    description: square wave, 2 cycles, 50% duty
+runs:
+- name: 20241003_2_50_cont_HD
+  regime: static
+  well: 2
+  pressure_mbar: 50
+  video: share/Static/20241003_2_50_cont_HD.mp4
+  pressure_csv: share/Static/20241003_2_50_cont.csv
+  crop:
+    x_min: 50
+    x_max: 650
+    y_min: 350
+    y_max: 1000
+  threshold:
+    block_size: 71
+    C: 5
+  blob_filter:
+    min_area: 150
+    max_area: 4500
+    min_height: 0.15
+    max_height: 0.75
+    min_width: 0.25
+    max_width: 0.95
+    axis_ratio: 0.4
+  n_markers_nominal: 10
+  legacy_sync_offset_frames: 104
+  inner_circle_cropped:
+    cx: 338
+    cy: 318
+    r: 216
+- name: 20241003_2_100_cont_HD
+  regime: static
+  well: 2
+  pressure_mbar: 100
+  video: share/Static/20241003_2_100_cont_HD.mp4
+  pressure_csv: share/Static/20241003_2_100_cont.csv
+  crop:
+    x_min: 50
+    x_max: 650
+    y_min: 350
+    y_max: 1000
+  threshold:
+    block_size: 71
+    C: 5
+  blob_filter:
+    min_area: 150
+    max_area: 4500
+    min_height: 0.15
+    max_height: 0.75
+    min_width: 0.25
+    max_width: 0.95
+    axis_ratio: 0.4
+  n_markers_nominal: 10
+  legacy_sync_offset_frames: 68
+- name: 20241003_2_200_cont_HD
+  regime: static
+  well: 2
+  pressure_mbar: 200
+  video: share/Static/20241003_2_200_cont_HD.mp4
+  pressure_csv: share/Static/20241003_2_200_cont.csv
+  crop:
+    x_min: 50
+    x_max: 650
+    y_min: 350
+    y_max: 1000
+  threshold:
+    block_size: 91
+    C: 5
+  blob_filter:
+    min_area: 150
+    max_area: 4500
+    min_height: 0.15
+    max_height: 0.75
+    min_width: 0.25
+    max_width: 0.95
+    axis_ratio: 0.4
+  n_markers_nominal: 10
+  legacy_sync_offset_frames: 130
+- name: 20241003_4_50_cont_HD
+  regime: static
+  well: 4
+  pressure_mbar: 50
+  video: share/Static/20241003_4_50_cont_HD.mp4
+  pressure_csv: share/Static/20241003_4_50_cont.csv
+  crop:
+    x_min: 100
+    x_max: 600
+    y_min: 400
+    y_max: 800
+  threshold:
+    block_size: 81
+    C: 5
+  blob_filter:
+    min_area: 100
+    max_area: 4500
+    min_height: 0.1
+    max_height: 0.85
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 15
+  legacy_sync_offset_frames: 83
+  inner_circle_cropped:
+    cx: 264
+    cy: 182
+    r: 151
+- name: 20241003_4_100_cont_HD
+  regime: static
+  well: 4
+  pressure_mbar: 100
+  video: share/Static/20241003_4_100_cont_HD.mp4
+  pressure_csv: share/Static/20241003_4_100_cont.csv
+  crop:
+    x_min: 100
+    x_max: 600
+    y_min: 350
+    y_max: 750
+  threshold:
+    block_size: 147
+    C: 5
+  blob_filter:
+    min_area: 15
+    max_area: 4500
+    min_height: 0.1
+    max_height: 0.85
+    min_width: 0.2
+    max_width: 0.9
+    axis_ratio: 0.2
+  n_markers_nominal: 15
+  excluded: true
+  excluded_reason: unreliable tracking (axis_ratio 0.2, 59%-wrong-particle-count class
+    of run); excluded in all submission notebooks
+  rotate: ccw
+  flag: video stored landscape (720 rows); submission pipeline cropped it unrotated,
+    clipping the field of view — rotation fixed in re-analysis
+- name: 20241003_4_200_cont_HD
+  regime: static
+  well: 4
+  pressure_mbar: 200
+  video: share/Static/20241003_4_200_cont_HD.mp4
+  pressure_csv: share/Static/20241003_4_200_cont.csv
+  crop:
+    x_min: 150
+    x_max: 600
+    y_min: 400
+    y_max: 850
+  threshold:
+    block_size: 205
+    C: 8
+  blob_filter:
+    min_area: 300
+    max_area: 4500
+    min_height: 0.1
+    max_height: 0.85
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 15
+  legacy_sync_offset_frames: 185
+  rotate: ccw
+  flag: video stored landscape (720 rows); submission pipeline cropped it unrotated,
+    clipping the field of view — rotation fixed in re-analysis
+- name: 20241003_5_50_cont_HD
+  regime: static
+  well: 5
+  pressure_mbar: 50
+  video: share/Static/20241003_5_50_cont_HD.mp4
+  pressure_csv: share/Static/20241003_5_50_cont.csv
+  crop:
+    x_min: 50
+    x_max: 550
+    y_min: 300
+    y_max: 900
+  threshold:
+    block_size: 115
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 3000
+    min_height: 0.1
+    max_height: 0.8
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 12
+  legacy_sync_offset_frames: 106
+  inner_circle_cropped:
+    cx: 328
+    cy: 336
+    r: 154
+- name: 20241003_5_100_cont_HD
+  regime: static
+  well: 5
+  pressure_mbar: 100
+  video: share/Static/20241003_5_100_cont_HD.mp4
+  pressure_csv: share/Static/20241003_5_100_cont.csv
+  crop:
+    x_min: 50
+    x_max: 550
+    y_min: 300
+    y_max: 900
+  threshold:
+    block_size: 145
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 5000
+    min_height: 0.1
+    max_height: 0.8
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 12
+  legacy_sync_offset_frames: 129
+- name: 20241003_5_200_cont_HD
+  regime: static
+  well: 5
+  pressure_mbar: 200
+  video: share/Static/20241003_5_200_cont_HD.mp4
+  pressure_csv: share/Static/20241003_5_200_cont.csv
+  crop:
+    x_min: 50
+    x_max: 550
+    y_min: 300
+    y_max: 900
+  threshold:
+    block_size: 181
+    C: 5
+  blob_filter:
+    min_area: 200
+    max_area: 5000
+    min_height: 0.1
+    max_height: 0.95
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 12
+  legacy_sync_offset_frames: 186
+  rotate: cw
+  flag: video stored landscape (720 rows); submission pipeline cropped it unrotated,
+    clipping the field of view — rotation fixed in re-analysis
+- name: 20241003_6_50_cont_HD
+  regime: static
+  well: 6
+  pressure_mbar: 50
+  video: share/Static/20241003_6_50_cont_HD.mp4
+  pressure_csv: share/Static/20241003_6_50_cont.csv
+  crop:
+    x_min: 50
+    x_max: 650
+    y_min: 450
+    y_max: 900
+  threshold:
+    block_size: 99
+    C: 8
+  blob_filter:
+    min_area: 100
+    max_area: 2500
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 9
+  legacy_sync_offset_frames: 76
+  inner_circle_cropped:
+    cx: 334
+    cy: 200
+    r: 183
+  flag: included in tracking+sync but silently dropped from published figures (plot_results_images.ipynb
+    cell 5); reason undocumented — re-evaluate with QC; video stored landscape (720
+    rows); submission pipeline cropped it unrotated, clipping the field of view —
+    rotation fixed in re-analysis
+  rotate: cw
+- name: 20241003_6_100_cont_HD
+  regime: static
+  well: 6
+  pressure_mbar: 100
+  video: share/Static/20241003_6_100_cont_HD.mp4
+  pressure_csv: share/Static/20241003_6_100_cont.csv
+  crop:
+    x_min: 50
+    x_max: 550
+    y_min: 450
+    y_max: 950
+  threshold:
+    block_size: 401
+    C: 7
+  blob_filter:
+    min_area: 250
+    max_area: 8500
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 9
+  legacy_sync_offset_frames: 71
+  rotate: cw
+  flag: video stored landscape (720 rows); submission pipeline cropped it unrotated,
+    clipping the field of view — rotation fixed in re-analysis
+- name: 20241003_6_200_cont_HD
+  regime: static
+  well: 6
+  pressure_mbar: 200
+  video: share/Static/20241003_6_200_cont_HD.mp4
+  pressure_csv: share/Static/20241003_6_200_cont.csv
+  crop:
+    x_min: 50
+    x_max: 600
+    y_min: 250
+    y_max: 850
+  threshold:
+    block_size: 261
+    C: 6
+  blob_filter:
+    min_area: 300
+    max_area: 10000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 9
+  excluded: true
+  excluded_reason: only 3 markers survived tracking; excluded in all submission notebooks
+- name: 20241016_cyclic_1_50 mbar
+  regime: cyclic
+  well: 1
+  pressure_mbar: 50
+  video: share/Cyclic/20241016_cyclic_1_50 mbar.mp4
+  pressure_csv: share/Cyclic/20241016_cyclic_1_50 mbar.csv
+  crop:
+    x_min: 50
+    x_max: 650
+    y_min: 300
+    y_max: 850
+  threshold:
+    block_size: 81
+    C: 5
+  blob_filter:
+    min_area: 150
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 8
+  flag: 'RESOLVED 2026-08-14: the 100 mbar video was replaced with the recovered original;
+    this 50 mbar file is unchanged and its content is confirmed as the 50 mbar experiment.
+    History: DATA INTEGRITY: the 50 and 100 mbar video files of this well are byte-identical
+    (MD5 match) — one label points at the wrong video. Same defect exists in the published
+    supplementary experimental_records (cyclic_50-mbar.mp4 == cyclic_100-mbar.mp4)
+    and presumably the Zenodo deposit. Original recordings needed to resolve; until
+    then this run must not enter pressure-resolved comparisons. | PAIRING EVIDENCE:
+    inconclusive for well 1 (both records match equally: xcorr 0.794/0.798, gap mismatch
+    0.14/0.13 s).'
+- name: 20241016_cyclic_1_100 mbar
+  regime: cyclic
+  well: 1
+  pressure_mbar: 100
+  video: share/Cyclic/20241016_cyclic_1_100 mbar.mp4
+  pressure_csv: share/Cyclic/20241016_cyclic_1_100 mbar.csv
+  crop:
+    x_min: 50
+    x_max: 650
+    y_min: 300
+    y_max: 850
+  threshold:
+    block_size: 81
+    C: 5
+  blob_filter:
+    min_area: 150
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 8
+  flag: 'RESOLVED 2026-08-14: authors recovered the original 100 mbar recording (new
+    file, MD5 f1da9dba); the former duplicate is kept as *_old.mp4. History: DATA
+    INTEGRITY: the 50 and 100 mbar video files of this well are byte-identical (MD5
+    match) — one label points at the wrong video. Same defect exists in the published
+    supplementary experimental_records (cyclic_50-mbar.mp4 == cyclic_100-mbar.mp4)
+    and presumably the Zenodo deposit. Original recordings needed to resolve; until
+    then this run must not enter pressure-resolved comparisons. | PAIRING EVIDENCE:
+    inconclusive for well 1 (both records match equally: xcorr 0.794/0.798, gap mismatch
+    0.14/0.13 s).'
+- name: 20241016_cyclic_1_200 mbar
+  regime: cyclic
+  well: 1
+  pressure_mbar: 200
+  video: share/Cyclic/20241016_cyclic_1_200 mbar.mp4
+  pressure_csv: share/Cyclic/20241016_cyclic_1_200 mbar.csv
+  crop:
+    x_min: 50
+    x_max: 550
+    y_min: 300
+    y_max: 850
+  threshold:
+    block_size: 111
+    C: 7
+  blob_filter:
+    min_area: 150
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 8
+- name: 20241016_cyclic_2_50 mbar
+  regime: cyclic
+  well: 2
+  pressure_mbar: 50
+  video: share/Cyclic/20241016_cyclic_2_50 mbar.mp4
+  pressure_csv: share/Cyclic/20241016_cyclic_2_50 mbar.csv
+  crop:
+    x_min: 0
+    x_max: 600
+    y_min: 300
+    y_max: 800
+  threshold:
+    block_size: 71
+    C: 5
+  blob_filter:
+    min_area: 150
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 11
+  flag: 'RESOLVED 2026-08-14: the 100 mbar video was replaced with the recovered original;
+    this 50 mbar file is unchanged and its content is confirmed as the 50 mbar experiment
+    (pairing evidence already pointed here). History: DATA INTEGRITY: the 50 and 100
+    mbar video files of this well are byte-identical (MD5 match) — one label points
+    at the wrong video. Same defect exists in the published supplementary experimental_records
+    (cyclic_50-mbar.mp4 == cyclic_100-mbar.mp4) and presumably the Zenodo deposit.
+    Original recordings needed to resolve; until then this run must not enter pressure-resolved
+    comparisons. | PAIRING EVIDENCE (scripts/pair_duplicates.py): the duplicated video
+    matches the 50 mbar pressure record (xcorr 0.924 vs 0.897; inter-pulse gap mismatch
+    0.09 s vs 1.55 s) -> the video content is the 50 mbar experiment; the 100 mbar
+    video is the lost file.'
+- name: 20241016_cyclic_2_100 mbar
+  regime: cyclic
+  well: 2
+  pressure_mbar: 100
+  video: share/Cyclic/20241016_cyclic_2_100 mbar.mp4
+  pressure_csv: share/Cyclic/20241016_cyclic_2_100 mbar.csv
+  crop:
+    x_min: 0
+    x_max: 600
+    y_min: 300
+    y_max: 800
+  threshold:
+    block_size: 71
+    C: 5
+  blob_filter:
+    min_area: 150
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 11
+  flag: 'RESOLVED 2026-08-14: authors recovered the original 100 mbar recording (new
+    file, MD5 9570f3fd); the former duplicate is kept as *_old.mp4. History: DATA
+    INTEGRITY: the 50 and 100 mbar video files of this well are byte-identical (MD5
+    match) — one label points at the wrong video. Same defect exists in the published
+    supplementary experimental_records (cyclic_50-mbar.mp4 == cyclic_100-mbar.mp4)
+    and presumably the Zenodo deposit. Original recordings needed to resolve; until
+    then this run must not enter pressure-resolved comparisons. | PAIRING EVIDENCE
+    (scripts/pair_duplicates.py): the duplicated video matches the 50 mbar pressure
+    record (xcorr 0.924 vs 0.897; inter-pulse gap mismatch 0.09 s vs 1.55 s) -> the
+    video content is the 50 mbar experiment; the 100 mbar video is the lost file.'
+- name: 20241016_cyclic_2_200 mbar
+  regime: cyclic
+  well: 2
+  pressure_mbar: 200
+  video: share/Cyclic/20241016_cyclic_2_200 mbar.mp4
+  pressure_csv: share/Cyclic/20241016_cyclic_2_200 mbar.csv
+  crop:
+    x_min: 50
+    x_max: 600
+    y_min: 450
+    y_max: 950
+  threshold:
+    block_size: 141
+    C: 6
+  blob_filter:
+    min_area: 150
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 11
+- name: 20241017_cyclic_3_50 mbar
+  regime: cyclic
+  well: 3
+  pressure_mbar: 50
+  video: share/Cyclic/20241017_cyclic_3_50 mbar.mp4
+  pressure_csv: share/Cyclic/20241017_cyclic_3_50 mbar.csv
+  crop:
+    x_min: 25
+    x_max: 600
+    y_min: 350
+    y_max: 900
+  threshold:
+    block_size: 91
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 10
+- name: 20241017_cyclic_3_100 mbar
+  regime: cyclic
+  well: 3
+  pressure_mbar: 100
+  video: share/Cyclic/20241017_cyclic_3_100 mbar.mp4
+  pressure_csv: share/Cyclic/20241017_cyclic_3_100 mbar.csv
+  crop:
+    x_min: 25
+    x_max: 600
+    y_min: 350
+    y_max: 900
+  threshold:
+    block_size: 91
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 10
+- name: 20241017_cyclic_3_200 mbar
+  regime: cyclic
+  well: 3
+  pressure_mbar: 200
+  video: share/Cyclic/20241017_cyclic_3_200 mbar.mp4
+  pressure_csv: share/Cyclic/20241017_cyclic_3_200 mbar.csv
+  crop:
+    x_min: 0
+    x_max: 550
+    y_min: 100
+    y_max: 650
+  threshold:
+    block_size: 131
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 10
+- name: 20241017_cyclic_4_50 mbar
+  regime: cyclic
+  well: 4
+  pressure_mbar: 50
+  video: share/Cyclic/20241017_cyclic_4_50 mbar.mp4
+  pressure_csv: share/Cyclic/20241017_cyclic_4_50 mbar.csv
+  crop:
+    x_min: 100
+    x_max: 600
+    y_min: 450
+    y_max: 900
+  threshold:
+    block_size: 161
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 9
+  rotate: ccw
+  flag: video stored landscape (720 rows); submission pipeline cropped it unrotated,
+    clipping the field of view — rotation fixed in re-analysis
+- name: 20241017_cyclic_4_100 mbar
+  regime: cyclic
+  well: 4
+  pressure_mbar: 100
+  video: share/Cyclic/20241017_cyclic_4_100 mbar.mp4
+  pressure_csv: share/Cyclic/20241017_cyclic_4_100 mbar.csv
+  crop:
+    x_min: 100
+    x_max: 600
+    y_min: 300
+    y_max: 800
+  threshold:
+    block_size: 165
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 9
+  rotate: ccw
+  flag: video stored landscape (720 rows); submission pipeline cropped it unrotated,
+    clipping the field of view — rotation fixed in re-analysis
+- name: 20241017_cyclic_4_200 mbar
+  regime: cyclic
+  well: 4
+  pressure_mbar: 200
+  video: share/Cyclic/20241017_cyclic_4_200 mbar.mp4
+  pressure_csv: share/Cyclic/20241017_cyclic_4_200 mbar.csv
+  crop:
+    x_min: 100
+    x_max: 600
+    y_min: 300
+    y_max: 800
+  threshold:
+    block_size: 165
+    C: 5
+  blob_filter:
+    min_area: 300
+    max_area: 6000
+    min_height: 0.1
+    max_height: 0.9
+    min_width: 0.1
+    max_width: 0.9
+    axis_ratio: 0.4
+  n_markers_nominal: 9
+  rotate: ccw
+  flag: video stored landscape (720 rows); submission pipeline cropped it unrotated,
+    clipping the field of view — rotation fixed in re-analysis
